@@ -1,0 +1,30 @@
+<html>
+<body>
+
+    <p id="posicaoBrowser"></p>
+    <button onclick="getLocalizacao()"> Pegar a localização! (clique e aguarde) </button>
+
+<script>
+
+    //-----------------------------------------------------------------------------
+    // the Geolocation API can return the coordinates of where the browser is located.
+    const pos = document.getElementById("posicaoBrowser");
+
+    function getLocalizacao() {
+        try{
+            navigator.geolocation.getCurrentPosition(mostrarPosicao);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    function mostrarPosicao(posicao){
+        pos.innerHTML = posicao.coords.latitude + " / " + posicao.coords.longitude;
+    }
+    //-----------------------------------------------------------------------------
+
+</script>
+
+
+</body>
+</html>

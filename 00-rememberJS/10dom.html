@@ -1,0 +1,118 @@
+<html>
+<body>
+
+<p id="saudacao"></p>
+
+<p> HORA (atualize a página): </p>
+<p id="hora">  </p>
+
+<br>
+<br>
+
+
+<input type="number" id="numb" placeholder="Digite um número...">
+<p> Digite um número maior do que 1 ou menor do que 10: </p>
+<button type="button" onclick="validarNumero()"> VALIDAR </button>
+<p id="resposta"></p>
+
+<br>
+<br>
+
+
+<button id="botaoAlerta"> Gerar alerta </button>
+<br>
+<br>
+
+
+<p id="paragrafo"> Mudar conforme passa o mouse no botão alerta! </p>
+
+
+<br>
+<br>
+
+<p> MULTIPLIQUE DOIS NÚMEROS! </p>
+<input type="number" id="numero1" placeholder="Digite um número...">
+<input type="number" id="numero2" placeholder="Digite um número...">
+<button type="button" id="realizarMultiplicacao"> Multiplicar </button>
+<p id="respostaMultiplicacao"> resposta </p>
+
+
+<br>
+<br>
+
+<p> Hora agora (dinâmico) </p>
+<p id="horaAgora"></p>
+
+
+
+<!-- ================================================================================== -->
+<script>
+document.getElementById("saudacao").innerHTML = "OLÁ A TODOS!!";
+document.getElementById("saudacao").style.backgroundColor = 'lightblue';
+document.getElementById("saudacao").style.fontFamily = 'verdana';
+            // getElementById is a method     // other methods...document.getElementsByClassName(name)	
+            // innerHTML is a property. Can be used to get or change any HTML element!
+
+// dynamic HTML content
+document.getElementById("hora").innerHTML = Date();
+
+
+// validate number with JS
+function validarNumero() {
+    let numero = document.getElementById("numb").value;
+
+    let textoResposta = "";
+    if ( numero < 1 || numero > 10 ) {
+        textoResposta = "Inválido!";
+        document.getElementById("resposta").style.backgroundColor = 'red';
+    } else {
+        textoResposta = "ok!";
+        document.getElementById("resposta").style.backgroundColor = 'lightgreen';
+    }
+
+    document.getElementById("resposta").innerHTML = textoResposta;
+
+}
+
+// addEventListener: allows you to specify a function (callback) 
+// that will be executed when a specific event occurs on that element
+document.getElementById("botaoAlerta").addEventListener("click", function(){alert("Alerta!")})
+
+document.getElementById("botaoAlerta").addEventListener("mouseover", alterarEscrita);
+
+function alterarEscrita() {
+    document.getElementById("paragrafo").innerHTML += "Moused over!";
+}
+
+
+//------------
+// script para calculadora:
+
+document.getElementById("realizarMultiplicacao").addEventListener("click", doMultiplicacao);
+
+function doMultiplicacao(a, b) {
+
+    a = document.getElementById("numero1").value;
+    b = document.getElementById("numero2").value;
+
+    document.getElementById("respostaMultiplicacao").innerHTML = a * b;
+}
+
+
+
+//------
+// The setInterval() method repeats a given function at every given time-interval.
+setInterval(temporizador, 1000); // 1 second = 1000 milliseconds
+
+function temporizador(){
+    const hora = new Date();
+    document.getElementById("horaAgora").innerHTML = hora.toLocaleTimeString();
+}
+
+</script>
+<!-- ================================================================================== -->
+
+
+</body>
+</html>
+
